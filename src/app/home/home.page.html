@@ -4,12 +4,34 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content
+  [fullscreen]="true"
+  [style.--color-fondo]="
+    colorActual === colorOscuro
+      ? 'var(--tema-oscuro-fondo)'
+      : 'var(--tema-claro-fondo)'
+  "
+  [style.--color-card]="
+    colorActual === colorOscuro
+      ? 'var(--tema-oscuro-card)'
+      : 'var(--tema-claro-card)'
+  "
+  [style.--color-texto]="
+    colorActual === colorOscuro
+      ? 'var(--tema-oscuro-texto)'
+      : 'var(--tema-claro-texto)'
+  "
+  [style.--color-titulo]="
+    colorActual === colorOscuro
+      ? 'var(--tema-oscuro-titulo)'
+      : 'var(--tema-claro-titulo)'
+  "
+>
   <swiper-container
     pagination="true"
     loop="true"
     slides-per-view="1"
-    navigation="true"
+    navigation="false"
     style="width: 100%; height: 100%"
   >
     <swiper-slide *ngFor="let genre of genres">
@@ -20,4 +42,20 @@
       </div>
     </swiper-slide>
   </swiper-container>
+  <ion-button expand="block" (click)="cambiarColor()">
+    🌗 Cambiar tema
+  </ion-button>
+
+  <!-- Demo Storage -->
+
+  <div>
+    <h3>Demo Ionic Storage</h3>
+    <div [style.background-color]="colorActual">
+      <p>Tema Actual: {{colorActual === colorOscuro ? 'Oscuro' : 'Claro'}}</p>
+    </div>
+  </div>
+
+  <div>
+    <ion-button (click)="cambiarColor()"> Cambiar Tema Y Guardar </ion-button>
+  </div>
 </ion-content>
