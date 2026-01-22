@@ -1,4 +1,4 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
     <ion-title> Blank </ion-title>
   </ion-toolbar>
@@ -45,17 +45,7 @@
   <ion-button expand="block" (click)="cambiarColor()">
     🌗 Cambiar tema
   </ion-button>
-
-  <!-- Demo Storage -->
-
-  <div>
-    <h3>Demo Ionic Storage</h3>
-    <div [style.background-color]="colorActual">
-      <p>Tema Actual: {{colorActual === colorOscuro ? 'Oscuro' : 'Claro'}}</p>
-    </div>
-  </div>
-
-  <div>
-    <ion-button (click)="cambiarColor()"> Cambiar Tema Y Guardar </ion-button>
-  </div>
+  <ion-button expand="block" color="secondary" (click)="goToIntro()">
+    📘 Ver Intro
+  </ion-button>
 </ion-content>

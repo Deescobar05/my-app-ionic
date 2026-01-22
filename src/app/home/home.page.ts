@@ -1,27 +1,26 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { StorageService } from '../services/storage.service';
-import {
-  IonHeader,
-  IonToolbar,
-  IonTitle,
-  IonContent,
-} from '@ionic/angular/standalone';
+import { IonicModule } from '@ionic/angular';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
-  imports: [IonHeader, IonToolbar, IonTitle, IonContent, CommonModule],
+  imports: [CommonModule, IonicModule],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class HomePage implements OnInit {
-  // [Tarea] Agregar informacion de minimo 3 slides para mostrar en la vista
-  // [Tarea] Cambiar mediante el click de un boton el tema (color) de los slides
+  // [Tarea] Agregar informacion de minimo 3 slides para mostrar en la vista -> Listo
+  // [Tarea] Cambiar mediante el click de un boton el tema (color) de los slides -> Listo
+  // [Tarea] Al volver atras o volver al home, guardar en el storage que ya estuve o vi la pagina de intro
+  // [Tarea] Crear una funcion para ir a ver la intro, se va conectar con un boton que debamos agregar en el HTML y al hacer click ejecute esta funcion para llevarme a ver la intro
 
   colorClaro = 'var(--color-claro)';
   colorOscuro = 'var(--color-oscuro)';
   colorActual = this.colorOscuro;
+  introSeen = false;
 
   genres = [
     {
@@ -47,7 +46,10 @@ export class HomePage implements OnInit {
     },
   ];
 
-  constructor(private storageService: StorageService) {}
+  constructor(
+    private storageService: StorageService,
+    private router: Router,
+  ) {}
 
   async ngOnInit() {
     await this.loadStorageData();
@@ -68,5 +70,15 @@ export class HomePage implements OnInit {
     if (savedTheme) {
       this.colorActual = savedTheme;
     }
+
+    const introSeen = await this.storageService.get('introSeen');
+    if (introSeen) {
+      this.introSeen = true;
+      console.log('El usuario ya vio la intro');
+    }
+  }
+
+  goToIntro() {
+    this.router.navigateByUrl('/intro');
   }
 }

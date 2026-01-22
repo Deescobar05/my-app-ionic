@@ -1,3 +1,4 @@
+import 'swiper/element/bundle';
 import { routes } from './app/app.routes';
 import { Storage } from '@ionic/storage-angular';
 import { AppComponent } from './app/app.component';

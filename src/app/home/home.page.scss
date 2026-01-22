@@ -5,11 +5,22 @@
   border-radius: 22px;
   box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
   transition: background 0.4s ease, color 0.4s ease;
+
+  /* 🔥 Altura controlada */
+  height: 52vh;                 /* ocupa el 72% de la pantalla */
+  max-width: 350px;
+  margin: 0 auto;
+
+  /* Layout interno */
+  display: flex;
+  flex-direction: column;
 }
 
 .slide-content img {
   width: 100%;
   max-width: 320px;
+  height: 180px;              /* altura fija */
+  object-fit: cover;         /* recorte elegante */
   border-radius: 18px;
   margin: 12px auto 16px;
   display: block;
@@ -26,6 +37,9 @@
   font-size: 0.95rem;
   line-height: 1.55;
   color: var(--color-texto);
+
+  overflow-y: auto;
+  padding-right: 6px;
 }
 
 ion-content {
@@ -42,4 +56,23 @@ ion-button {
 
 ion-button::part(native) {
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
+}
+
+@media (max-width: 480px) {
+  .slide-content {
+    height: 78vh;
+    padding: 1rem;
+  }
+
+  .slide-content img {
+    height: 150px;
+  }
+
+  .slide-content h2 {
+    font-size: 1.4rem;
+  }
+
+  .slide-content p {
+    font-size: 0.85rem;
+  }
 }
