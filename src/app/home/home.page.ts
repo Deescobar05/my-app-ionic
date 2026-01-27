@@ -14,8 +14,16 @@ import { Router } from '@angular/router';
 export class HomePage implements OnInit {
   // [Tarea] Agregar informacion de minimo 3 slides para mostrar en la vista -> Listo
   // [Tarea] Cambiar mediante el click de un boton el tema (color) de los slides -> Listo
-  // [Tarea] Al volver atras o volver al home, guardar en el storage que ya estuve o vi la pagina de intro
-  // [Tarea] Crear una funcion para ir a ver la intro, se va conectar con un boton que debamos agregar en el HTML y al hacer click ejecute esta funcion para llevarme a ver la intro
+  // [Tarea] Al volver atras o volver al home, guardar en el storage que ya estuve o vi la pagina de intro -> Listo
+  // [Tarea] Crear una funcion para ir a ver la intro, se va conectar con un boton que debamos agregar en el HTML y al hacer click ejecute esta funcion para llevarme a ver la intro -> Listo
+  // [Tarea] Obtener del storage si ya vi la intro y dependiendo del resultado dejar pasar o no hacia el home -> Listo
+  // [Tarea] En caso de false ( osea no vi la intro aun ), redireccionar con angular router la intro nuevamente -> Listo
+  // [Tarea] Organizar toda la pagina del intro con slides dinamicos
+  // [Tarea] Minimo 4 slides
+  // [Tarea] Utilizar variable de class
+  // [Tarea] Untilizar css utilities
+  // [Tarea] Agregar un boton que nos lleve al home
+
 
   colorClaro = 'var(--color-claro)';
   colorOscuro = 'var(--color-oscuro)';
@@ -53,6 +61,7 @@ export class HomePage implements OnInit {
 
   async ngOnInit() {
     await this.loadStorageData();
+    this.cargarDatos();
   }
 
   async cambiarColor() {
@@ -80,5 +89,18 @@ export class HomePage implements OnInit {
 
   goToIntro() {
     this.router.navigateByUrl('/intro');
+  }
+
+  obtenerDatos() {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(['Musica Clasica', 'Rock', 'Jazz']);
+      }, 1500);
+    });
+  }
+
+  async cargarDatos() {
+    const data = await this.obtenerDatos();
+    console.log('data =>', data);
   }
 }
