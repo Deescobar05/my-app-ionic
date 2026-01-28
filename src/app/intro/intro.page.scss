@@ -1,0 +1,61 @@
+.intro-page {
+  --background: linear-gradient(135deg, #6a11cb, #2575fc);
+  padding: 20px;
+}
+
+/* Swiper ocupa casi toda la pantalla */
+.intro-swiper {
+  height: 85vh;
+}
+
+/* Contenido del slide */
+.slide-wrapper {
+  height: 100%;
+  background: #ffffff;
+  border-radius: 28px;
+  padding: 24px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  box-shadow: 0 15px 30px rgba(0,0,0,0.25);
+  transition: transform 0.3s ease;
+}
+
+.slide-wrapper:hover {
+  transform: scale(1.02);
+}
+
+.slide-wrapper img {
+  width: 160px;
+  height: 160px;
+  object-fit: contain;
+  margin-bottom: 24px;
+}
+
+.slide-wrapper h2 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: #333;
+}
+
+.slide-wrapper p {
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.4;
+  max-width: 260px;
+}
+
+/* Botón inferior */
+.btn-container {
+  margin-top: 16px;
+}
+
+ion-button {
+  height: 54px;
+  font-size: 1.1rem;
+  border-radius: 16px;
+}

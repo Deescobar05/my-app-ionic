@@ -18,12 +18,15 @@ export class HomePage implements OnInit {
   // [Tarea] Crear una funcion para ir a ver la intro, se va conectar con un boton que debamos agregar en el HTML y al hacer click ejecute esta funcion para llevarme a ver la intro -> Listo
   // [Tarea] Obtener del storage si ya vi la intro y dependiendo del resultado dejar pasar o no hacia el home -> Listo
   // [Tarea] En caso de false ( osea no vi la intro aun ), redireccionar con angular router la intro nuevamente -> Listo
-  // [Tarea] Organizar toda la pagina del intro con slides dinamicos
-  // [Tarea] Minimo 4 slides
-  // [Tarea] Utilizar variable de class
-  // [Tarea] Untilizar css utilities
-  // [Tarea] Agregar un boton que nos lleve al home
-
+  // [Tarea] Organizar toda la pagina del intro con slides dinamicos -> Listo
+  // [Tarea] Minimo 4 slides -> Listo
+  // [Tarea] Utilizar variable de class -> Listo
+  // [Tarea] Untilizar css utilities -> Listo
+  // [Tarea] Agregar un boton que nos lleve al home -> Listo
+  // [Tarea] Agregarle style generales al componente de login
+  // [Tarea] Agregarle style para mostrar mensaje de error
+  // [Tarea] Mostrar mensaje de error en la validacion del campo de password
+  // [Tarea] Añadir los validation_message para password
 
   colorClaro = 'var(--color-claro)';
   colorOscuro = 'var(--color-oscuro)';

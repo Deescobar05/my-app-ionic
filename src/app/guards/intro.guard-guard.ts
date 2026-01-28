@@ -25,11 +25,4 @@ export class IntroGuard implements CanActivate {
     this.router.navigateByUrl('/intro');
     return false;
   }
-
-  async goBack() {
-    await this.storageService.set('introSeen', true);
-    console.log('Intro marcada como vista');
-
-    this.router.navigateByUrl('/home');
-  }
 }
