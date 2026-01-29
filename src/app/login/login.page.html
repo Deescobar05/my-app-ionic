@@ -25,9 +25,10 @@
         formControlName="email"
       ></ion-input>
     </ion-item>
-    <div>
+    <div class="error-container">
       <ng-container *ngFor="let validation of validation_message.email">
         <div
+          class="error-message"
           *ngIf="(loginForm.get('email')?.hasError(validation.type) && loginForm.get('email')?.dirty)"
         >
           {{validation.message}}
@@ -43,15 +44,28 @@
         type="password"
       ></ion-input>
     </ion-item>
-    <ion-button 
-      shape="round" 
-      color="primary" 
-      expand="full" 
+    <div class="error-container">
+      <ng-container *ngFor="let validation of validation_message.password">
+        <div
+          class="error-message"
+          *ngIf="loginForm.get('password')?.hasError(validation.type) && loginForm.get('password')?.dirty"
+        >
+          {{ validation.message }}
+        </div>
+      </ng-container>
+    </div>
+    <ion-button
+      shape="round"
+      color="primary"
+      expand="full"
       type="submit"
       [disabled]="!loginForm.valid"
     >
       Login
-    </ion-button
-    >
+    </ion-button>
+    <ion-button fill="clear" expand="block" (click)="goToRegister()">
+      Crear cuenta
+    </ion-button>
   </form>
+  {{errorMessage}}
 </ion-content>

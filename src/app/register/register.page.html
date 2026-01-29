@@ -1,0 +1,89 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Registro</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="register-page">
+  <div class="form-container">
+    <h2>Crear cuenta 🎵</h2>
+
+    <form [formGroup]="registerForm" (ngSubmit)="registerUser()">
+      <!-- Nombre -->
+      <ion-item>
+        <ion-input
+          label="Nombre"
+          labelPlacement="floating"
+          formControlName="name"
+        ></ion-input>
+      </ion-item>
+      <div class="error" *ngFor="let v of validation_message.name">
+        <small
+          *ngIf="registerForm.get('name')?.hasError(v.type) && registerForm.get('name')?.touched"
+        >
+          {{ v.message }}
+        </small>
+      </div>
+
+      <!-- Apellido -->
+      <ion-item>
+        <ion-input
+          label="Apellido"
+          labelPlacement="floating"
+          formControlName="lastName"
+        ></ion-input>
+      </ion-item>
+      <div class="error" *ngFor="let v of validation_message.lastName">
+        <small
+          *ngIf="registerForm.get('lastName')?.hasError(v.type) && registerForm.get('lastName')?.touched"
+        >
+          {{ v.message }}
+        </small>
+      </div>
+
+      <!-- Email -->
+      <ion-item>
+        <ion-input
+          label="Email"
+          labelPlacement="floating"
+          formControlName="email"
+        ></ion-input>
+      </ion-item>
+      <div class="error" *ngFor="let v of validation_message.email">
+        <small
+          *ngIf="registerForm.get('email')?.hasError(v.type) && registerForm.get('email')?.touched"
+        >
+          {{ v.message }}
+        </small>
+      </div>
+
+      <!-- Password -->
+      <ion-item>
+        <ion-input
+          type="password"
+          label="Contraseña"
+          labelPlacement="floating"
+          formControlName="password"
+        ></ion-input>
+      </ion-item>
+      <div class="error" *ngFor="let v of validation_message.password">
+        <small
+          *ngIf="registerForm.get('password')?.hasError(v.type) && registerForm.get('password')?.touched"
+        >
+          {{ v.message }}
+        </small>
+      </div>
+
+      <!-- Error backend -->
+      <p class="backend-error" *ngIf="errorMessage">{{ errorMessage }}</p>
+
+      <ion-button expand="block" type="submit" [disabled]="!registerForm.valid">
+        Registrarme
+      </ion-button>
+
+      <ion-button fill="clear" expand="block" (click)="goToLogin()">
+        Ya tengo cuenta
+      </ion-button>
+    </form>
+  </div>
+</ion-content>

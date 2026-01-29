@@ -1,0 +1,36 @@
+.register-page {
+  --background: linear-gradient(180deg, #eef2f3, #dfe9f3);
+}
+
+.form-container {
+  max-width: 420px;
+  margin: auto;
+  padding: 24px;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+ion-item {
+  margin-bottom: 8px;
+  border-radius: 12px;
+}
+
+.error small {
+  color: #e53935;
+  margin-left: 10px;
+}
+
+.backend-error {
+  color: #e53935;
+  text-align: center;
+  margin: 12px 0;
+}
+
+ion-button {
+  margin-top: 16px;
+  height: 50px;
+  border-radius: 14px;
+}

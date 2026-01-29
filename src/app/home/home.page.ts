@@ -23,10 +23,22 @@ export class HomePage implements OnInit {
   // [Tarea] Utilizar variable de class -> Listo
   // [Tarea] Untilizar css utilities -> Listo
   // [Tarea] Agregar un boton que nos lleve al home -> Listo
-  // [Tarea] Agregarle style generales al componente de login
-  // [Tarea] Agregarle style para mostrar mensaje de error
-  // [Tarea] Mostrar mensaje de error en la validacion del campo de password
-  // [Tarea] Añadir los validation_message para password
+  // [Tarea] Agregarle style generales al componente de login -> Listo
+  // [Tarea] Agregarle style para mostrar mensaje de error -> Listo
+  // [Tarea] Mostrar mensaje de error en la validacion del campo de password -> Listo
+  // [Tarea] Crear un nuevo Guard para cuando intente entrar al home, validar si estoy logueada y si no redireccionar a login -> Listo
+  // [Tarea] Validar si el login es exitoso guardar en el storage "login:true" -> Listo
+  // [Tarea] Crear pagina de registro -> Listo
+  // [Tarea] Crear un formulario reactivo(nombre, apellido, email, contraseña) -> Listo
+  // [Tarea] Realizar validaciones, mensajes de error, habilitar el boton de registro solo si todo el formulario esta correcto -> Listo
+  // [Tarea] Crear un servicio que reciba los datos de registro -> Listo
+  // [Tarea] Si el servivio devuelve accept, navegar hacia login y guarda los datos de registro en el storage -> Listo
+  // [Tarea] Si no que muestre el mensaje de error, si el registro no fue exitoso -> Listo
+  // [Tarea] Crear un boto que pueda volver a login -> Listo
+  // [Tarea] En el login, crear un boton o link que me lleve a la pagina de registro -> Listo
+  // [Tarea] 
+  // [Tarea] 
+  // [Tarea] 
 
   colorClaro = 'var(--color-claro)';
   colorOscuro = 'var(--color-oscuro)';
@@ -64,7 +76,6 @@ export class HomePage implements OnInit {
 
   async ngOnInit() {
     await this.loadStorageData();
-    this.cargarDatos();
   }
 
   async cambiarColor() {
@@ -92,18 +103,5 @@ export class HomePage implements OnInit {
 
   goToIntro() {
     this.router.navigateByUrl('/intro');
-  }
-
-  obtenerDatos() {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(['Musica Clasica', 'Rock', 'Jazz']);
-      }, 1500);
-    });
-  }
-
-  async cargarDatos() {
-    const data = await this.obtenerDatos();
-    console.log('data =>', data);
   }
 }
