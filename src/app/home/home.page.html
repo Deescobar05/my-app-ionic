@@ -1,11 +1,27 @@
-<ion-header>
+<ion-header
+  class="header-yt"
+  [style.--color-card]="
+    colorActual === colorOscuro
+      ? 'var(--tema-oscuro-card)'
+      : 'var(--tema-claro-card)'
+  "
+  [style.--color-texto]="
+    colorActual === colorOscuro
+      ? 'var(--tema-oscuro-texto)'
+      : 'var(--tema-claro-texto)'
+  "
+>
   <ion-toolbar>
-    <ion-title> Blank </ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Music</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content
   [fullscreen]="true"
+  class="yt-content"
   [style.--color-fondo]="
     colorActual === colorOscuro
       ? 'var(--tema-oscuro-fondo)'
@@ -27,25 +43,101 @@
       : 'var(--tema-claro-titulo)'
   "
 >
-  <swiper-container
-    pagination="true"
-    loop="true"
-    slides-per-view="1"
-    navigation="false"
-    style="width: 100%; height: 100%"
-  >
-    <swiper-slide *ngFor="let genre of genres">
-      <div class="slide-content">
-        <h2>{{genre.title}}</h2>
-        <img [src]="genre.image" [alt]="genre.title" />
-        <p>{{genre.description}}</p>
-      </div>
-    </swiper-slide>
-  </swiper-container>
-  <ion-button expand="block" (click)="cambiarColor()">
-    🌗 Cambiar tema
-  </ion-button>
-  <ion-button expand="block" color="secondary" (click)="goToIntro()">
-    📘 Ver Intro
-  </ion-button>
+  <!-- 🔥 GENEROS -->
+  <section class="yt-section">
+    <h3>Explorar géneros</h3>
+
+    <swiper-container slides-per-view="2.2" space-between="14">
+      <swiper-slide *ngFor="let genre of genres">
+        <div class="yt-card genre">
+          <img [src]="genre.image" />
+          <div class="overlay"></div>
+          <h4>{{ genre.title }}</h4>
+        </div>
+      </swiper-slide>
+    </swiper-container>
+  </section>
+
+  <!-- 🔥 ALBUMS -->
+  <section class="yt-section">
+    <h3>Álbumes populares</h3>
+
+    <swiper-container slides-per-view="2.4" space-between="14">
+      <swiper-slide *ngFor="let album of albums" (click)="showSongs(album.id)">
+        <div class="yt-card album">
+          <img [src]="album.image" />
+          <h5>{{ album.name }}</h5>
+        </div>
+      </swiper-slide>
+    </swiper-container>
+  </section>
+
+  <!-- 🔥 ARTISTAS -->
+  <section class="yt-section">
+    <h3>Artistas</h3>
+
+    <swiper-container slides-per-view="2.8" space-between="14">
+      <swiper-slide
+        *ngFor="let artist of artists"
+        (click)="showSongsByArists(artist.id)"
+      >
+        <div class="yt-card artist">
+          <img [src]="artist.image" />
+          <h5>{{ artist.name }}</h5>
+        </div>
+      </swiper-slide>
+    </swiper-container>
+  </section>
 </ion-content>
+
+<!-- 🔥 MINI PLAYER -->
+<ion-footer class="mini-player" *ngIf="song?.name">
+  <ion-grid>
+    <ion-row>
+      <ion-col class="ion-text-start">
+        {{formatTime(currentSong?.currentTime) || "0:00"}}</ion-col
+      >
+      <ion-col class="ion-text-end"
+        >{{formatTime(getRemainingTime()) || "0:00"}}</ion-col
+      >
+    </ion-row>
+  </ion-grid>
+
+  <ion-progress-bar [value]="newTime"></ion-progress-bar>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size="1">
+        <ion-icon name="heart"></ion-icon>
+      </ion-col>
+      <ion-col size="10">
+        <ion-text>{{ song.name }}</ion-text>
+      </ion-col>
+      <ion-col size="1">
+        <ion-buttons>
+          <ion-icon
+            name="play"
+            *ngIf="!song.playing"
+            (click)="play()"
+          ></ion-icon>
+          <ion-icon
+            name="pause"
+            *ngIf="song.playing"
+            (click)="pause()"
+          ></ion-icon>
+        </ion-buttons>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!-- <div class="player-content">
+    <div class="song-info">
+      <strong>{{ song.name }}</strong>
+      <small>{{ song.artist }}</small>
+    </div>
+
+    <ion-buttons>
+      <ion-icon name="play"></ion-icon>
+    </ion-buttons>
+  </div> -->
+</ion-footer>

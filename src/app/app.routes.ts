@@ -3,13 +3,8 @@ import { AuthGuard } from './guards/auth-guard';
 import { IntroGuard } from './guards/intro.guard-guard';
 export const routes: Routes = [
   {
-    path: 'home',
-    loadComponent: () => import('./home/home.page').then((m) => m.HomePage),
-    canActivate: [IntroGuard, AuthGuard],
-  },
-  {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'menu/home',
     pathMatch: 'full',
   },
   {
@@ -22,6 +17,22 @@ export const routes: Routes = [
   },
   {
     path: 'register',
-    loadComponent: () => import('./register/register.page').then((m) => m.RegisterPage),
+    loadComponent: () =>
+      import('./register/register.page').then((m) => m.RegisterPage),
+  },
+  {
+    path: 'menu',
+    loadComponent: () => import('./menu/menu.page').then((m) => m.MenuPage),
+    children: [
+      { 
+        path: 'home',
+        loadComponent: () => import('./home/home.page').then((m) => m.HomePage),
+        canActivate: [IntroGuard, AuthGuard],
+      },
+    ],
+  },
+  {
+    path: 'songs-modal',
+    loadComponent: () => import('./songs-modal/songs-modal.page').then( m => m.SongsModalPage)
   },
 ];

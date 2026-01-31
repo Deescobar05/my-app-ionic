@@ -1,0 +1,48 @@
+<ion-header
+  class="modal-header"
+  [style.--color-card]="
+    colorActual === colorOscuro
+      ? 'var(--tema-oscuro-card)'
+      : 'var(--tema-claro-card)'
+  "
+  [style.--color-texto]="
+    colorActual === colorOscuro
+      ? 'var(--tema-oscuro-texto)'
+      : 'var(--tema-claro-texto)'
+  "
+>
+  <ion-toolbar>
+    <ion-title>🎵 Canciones</ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button fill="clear" (click)="closeModal()">
+        <ion-icon name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content
+  class="modal-content"
+  [style.--color-fondo]="
+    colorActual === colorOscuro
+      ? 'var(--tema-oscuro-fondo)'
+      : 'var(--tema-claro-fondo)'
+  "
+>
+  <ion-list lines="none">
+    <ion-item
+      class="song-item"
+      *ngFor="let song of songs; index as i"
+      (click)="selectSong(song)"
+    >
+      <div class="song-index">{{ i + 1 }}</div>
+
+      <ion-label>
+        <h2>{{ song.name }}</h2>
+      </ion-label>
+
+      <ion-icon name="play" slot="end"></ion-icon>
+    </ion-item>
+  </ion-list>
+</ion-content>

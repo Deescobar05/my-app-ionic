@@ -1,0 +1,35 @@
+.modal-content {
+  --background: var(--color-fondo);
+}
+
+/* HEADER */
+.modal-header ion-toolbar {
+  --background: var(--color-card);
+  --color: var(--color-texto);
+}
+
+/* ITEMS */
+.song-item {
+  --background: transparent;
+  margin: 6px 12px;
+  border-radius: 12px;
+  transition: background 0.3s ease;
+}
+
+.song-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* NUMERO */
+.song-index {
+  width: 28px;
+  text-align: center;
+  font-weight: bold;
+  opacity: 0.6;
+}
+
+/* TITULO */
+.song-item h2 {
+  font-size: 0.95rem;
+  color: var(--color-texto);
+}

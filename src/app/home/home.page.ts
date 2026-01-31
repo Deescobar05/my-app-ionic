@@ -1,9 +1,9 @@
 import { Component, OnInit, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { SongsModalPage } from '../songs-modal/songs-modal.page';
+import { IonicModule, ModalController } from '@ionic/angular';
 import { StorageService } from '../services/storage.service';
-import { IonicModule } from '@ionic/angular';
-import { Router } from '@angular/router';
-
+import { MusicService } from '../services/music.service';
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -36,15 +36,14 @@ export class HomePage implements OnInit {
   // [Tarea] Si no que muestre el mensaje de error, si el registro no fue exitoso -> Listo
   // [Tarea] Crear un boto que pueda volver a login -> Listo
   // [Tarea] En el login, crear un boton o link que me lleve a la pagina de registro -> Listo
-  // [Tarea] 
-  // [Tarea] 
-  // [Tarea] 
+  // [Tarea] Agregar "Cerrar sesion" debe de redireccionar al login, borrara del storage que ya estoy logueado -> Listo
+  // [Tarea] Crear un servicio para obtener los artistas desde el servidor api -> Listo
+  // [Tarea] Crear un servicio para obtener las canciones por artista /track/artists/:id -> Listo
 
   colorClaro = 'var(--color-claro)';
   colorOscuro = 'var(--color-oscuro)';
   colorActual = this.colorOscuro;
   introSeen = false;
-
   genres = [
     {
       title: 'Música Clásica',
@@ -68,14 +67,120 @@ export class HomePage implements OnInit {
         'El jazz es un género musical que nació a finales del siglo XIX en las comunidades afroamericanas de Nueva Orleans. Se trata de una categoría en torno a la cual operan diferentes géneros musicales con características comunes. El género surge de la confrontación de la música de ascendencia afroamericana con la tradición europea, teniendo como base el swing y la improvisación: en un origen, los esclavos norteamericanos tuvieron que aprender el lenguaje musical europeo si querían seguir cantando. De este modo, la música jazz puede entenderse tanto como un género musical en sí mismo como un idioma musical propio.',
     },
   ];
+  artists: any;
+  tracks: any;
+  albums: any;
+  currentSong: any = {};
+  localArtists: any;
+  song: any = {
+    name: '',
+    preview_url: '',
+    playing: false,
+  };
+  newTime: any;
 
   constructor(
     private storageService: StorageService,
-    private router: Router,
+    private musicService: MusicService,
+    private modal: ModalController,
   ) {}
 
   async ngOnInit() {
     await this.loadStorageData();
+    this.loadTracks();
+    this.loadAlbums();
+    this.loadArtists();
+  }
+
+  // Consultamos los artistas
+  async loadArtists() {
+    this.musicService.getArtists().then((artists) => {
+      this.artists = artists;
+      console.log('artists:::', artists);
+    });
+  }
+
+  // Consultamos las canciones
+  async loadTracks() {
+    this.musicService.getTracks().then((tracks) => {
+      this.tracks = tracks;
+      console.log('track:::', tracks);
+    });
+  }
+
+  // Consultamos los albunes
+  async loadAlbums() {
+    this.musicService.getAlbums().then((albums) => {
+      this.albums = albums;
+      console.log('albums:::', albums);
+    });
+  }
+
+  // Consultamos las canciones por albun
+  async showSongs(id: string) {
+    const songs = await this.musicService.getSongByAlbum(id);
+    const modal = await this.modal.create({
+      component: SongsModalPage,
+      componentProps: {
+        songs: songs,
+      },
+    });
+    modal.onDidDismiss().then((res) => {
+      if (res.data) {
+        console.log('Cancion-resivida', res.data);
+        this.song = res.data;
+      }
+    });
+    modal.present();
+  }
+
+  // Consultamos las canciones por artista
+  async showSongsByArists(id: string) {
+    const songsByArtist = await this.musicService.getTracksByArtists(id);
+    const modal = await this.modal.create({
+      component: SongsModalPage,
+      componentProps: {
+        songs: songsByArtist,
+      },
+    });
+    modal.onDidDismiss().then((res) => {
+      if (res.data) {
+        console.log('Cancion-resivida', res.data);
+        this.song = res.data;
+      }
+    });
+    modal.present();
+  }
+
+  play() {
+    this.currentSong = new Audio(this.song.preview_url);
+    this.currentSong.play();
+    this.currentSong.addEventListener('timeupdate', () => {
+      this.newTime =
+        (this.currentSong.currentTime * (this.currentSong.duration / 10)) / 100;
+    });
+    this.song.playing = true;
+  }
+
+  pause() {
+    this.currentSong.pause();
+    this.song.playing = false;
+  }
+
+  formatTime(seconds: number) {
+    if (!seconds || isNaN(seconds)) return '0:00';
+    const minute = Math.floor(seconds / 60);
+    const remainingSeconds = Math.floor(seconds % 60);
+
+    return `${minute}:${remainingSeconds.toString().padStart(2, '0')}`;
+  }
+
+  getRemainingTime() {
+    if (!this.currentSong?.duration || !this.currentSong?.currentTime) {
+      return 0;
+    }
+
+    return this.currentSong.duration - this.currentSong.currentTime;
   }
 
   async cambiarColor() {
@@ -101,7 +206,7 @@ export class HomePage implements OnInit {
     }
   }
 
-  goToIntro() {
-    this.router.navigateByUrl('/intro');
+  getLocalArtists() {
+    this.localArtists = this.musicService.getLocalArtists();
   }
 }

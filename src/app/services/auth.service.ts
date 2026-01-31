@@ -28,7 +28,7 @@ export class AuthService {
 
   // LOGOUT por si acaso
   async logout() {
-    await this.storage.set('login', false);
+    await this.storage.remove('login');
   }
 
   // Validar sesión por si acaso

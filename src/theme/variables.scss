@@ -1,19 +1,23 @@
 // For information on how to create your own theme, please refer to:
 // https://ionicframework.com/docs/theming/
 :root {
+
   /* Tema claro */
-  --tema-claro-fondo: #fff3e0;
+  --tema-claro-fondo: #f4f4f4;
   --tema-claro-card: #ffffff;
-  --tema-claro-texto: #333333;
-  --tema-claro-titulo: #ff9800;
+  --tema-claro-texto: #1a1a1a;
+  --tema-claro-titulo: #000000;
 
   /* Tema oscuro */
-  --tema-oscuro-fondo: #1f1f1f;
-  --tema-oscuro-card: #2c2c2c;
-  --tema-oscuro-texto: #eeeeee;
-  --tema-oscuro-titulo: #ffb74d;
+  --tema-oscuro-fondo: #0f0f0f;
+  --tema-oscuro-card: #1a1a1a;
+  --tema-oscuro-texto: #cfcfcf;
+  --tema-oscuro-titulo: #ffffff;
 
-  /* Espaciados */
-  --espaciado-base: 1rem;
-  --espaciado-grande: 2rem;
+   /* 🎧 Variables activas (fallback) */
+  --color-fondo: var(--tema-oscuro-fondo);
+  --color-card: var(--tema-oscuro-card);
+  --color-texto: var(--tema-oscuro-texto);
+  --color-titulo: var(--tema-oscuro-titulo);
 }
+

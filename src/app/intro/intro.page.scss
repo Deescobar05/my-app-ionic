@@ -1,61 +1,96 @@
 .intro-page {
-  --background: linear-gradient(135deg, #6a11cb, #2575fc);
-  padding: 20px;
+  --background: linear-gradient(160deg, #0f0c29, #302b63, #24243e);
+  overflow: hidden;
 }
 
-/* Swiper ocupa casi toda la pantalla */
+/* 🔥 Swiper ocupa toda la pantalla */
 .intro-swiper {
-  height: 85vh;
+  height: 100vh;
 }
 
-/* Contenido del slide */
+/* 🔥 Wrapper principal */
 .slide-wrapper {
   height: 100%;
-  background: #ffffff;
-  border-radius: 28px;
-  padding: 24px;
+  padding: 40px 24px;
 
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 
-  box-shadow: 0 15px 30px rgba(0,0,0,0.25);
-  transition: transform 0.3s ease;
+  text-align: center;
+  color: white;
 }
 
-.slide-wrapper:hover {
-  transform: scale(1.02);
+/* 🔥 Glow icon */
+.image-glow {
+  width: 200px;
+  height: 200px;
+
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.25),
+    transparent 70%
+  );
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin-bottom: 40px;
+  animation: pulse 3s infinite;
 }
 
-.slide-wrapper img {
-  width: 160px;
-  height: 160px;
+.image-glow img {
+  width: 130px;
+  height: 130px;
   object-fit: contain;
-  margin-bottom: 24px;
 }
 
-.slide-wrapper h2 {
-  font-size: 1.6rem;
+/* 🔥 Texto */
+.text-content h1 {
+  font-size: 2rem;
   font-weight: 700;
-  margin-bottom: 12px;
-  color: #333;
+  margin-bottom: 14px;
 }
 
-.slide-wrapper p {
+.text-content p {
   font-size: 1rem;
-  color: #555;
-  line-height: 1.4;
-  max-width: 260px;
+  opacity: 0.85;
+  max-width: 280px;
 }
 
-/* Botón inferior */
-.btn-container {
-  margin-top: 16px;
+/* 🔥 Botón flotante */
+.btn-floating {
+  position: absolute;
+  bottom: 40px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
-ion-button {
+.btn-floating ion-button {
+  --background: linear-gradient(135deg, #ff416c, #ff4b2b);
   height: 54px;
+  width: 220px;
   font-size: 1.1rem;
-  border-radius: 16px;
+  font-weight: 600;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+}
+
+/* 🔥 Animación glow */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1.08);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
 }

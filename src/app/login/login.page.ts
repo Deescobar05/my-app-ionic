@@ -80,7 +80,7 @@ export class LoginPage implements OnInit {
         // ✅ Guardamos login:true
         await this.storageService.set('login', true);
         await this.showAlert('✅ Bienvenido', res, 'success');
-        this.navController.navigateForward('/home');
+        this.navController.navigateForward('/menu/home');
       })
       .catch(async (error) => {
         await this.showAlert('❌ Error', error, 'danger');
