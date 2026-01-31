@@ -1,12 +1,12 @@
 <ion-content class="intro-page">
   <swiper-container pagination="true" slides-per-view="1" class="intro-swiper">
     <swiper-slide *ngFor="let slide of slides">
-      <div class="slide-wrapper">
+      <div class="slide-wrapper" class="slide-wrapper ion-text-center ion-padding ion-display-flex ion-flex-column ion-justify-content-center ion-align-items-center">
         <div class="image-glow">
           <img [src]="slide.image" />
         </div>
 
-        <div class="text-content">
+        <div class="text-content ion-margin-top">
           <h1>{{ slide.title }}</h1>
           <p>{{ slide.description }}</p>
         </div>
@@ -15,7 +15,7 @@
   </swiper-container>
 
   <!-- ✅ Botón para ir al Home -->
-  <div class="btn-floating" slot="fixed">
+  <div class="btn-floating ion-padding-horizontal" slot="fixed">
     <ion-button expand="block" (click)="goBack()"> 🎧 Comenzar </ion-button>
   </div>
 </ion-content>

@@ -5,7 +5,7 @@
 </ion-header>
 
 <ion-content class="register-page">
-  <div class="form-container">
+  <div class="form-container ion-padding ion-text-center">
     <h2>Crear cuenta 🎵</h2>
 
     <form [formGroup]="registerForm" (ngSubmit)="registerUser()">
@@ -17,7 +17,7 @@
           formControlName="name"
         ></ion-input>
       </ion-item>
-      <div class="error" *ngFor="let v of validation_message.name">
+      <div class="error ion-padding-start" *ngFor="let v of validation_message.name">
         <small
           *ngIf="registerForm.get('name')?.hasError(v.type) && registerForm.get('name')?.touched"
         >
@@ -33,7 +33,7 @@
           formControlName="lastName"
         ></ion-input>
       </ion-item>
-      <div class="error" *ngFor="let v of validation_message.lastName">
+      <div class="error ion-padding-start" *ngFor="let v of validation_message.lastName">
         <small
           *ngIf="registerForm.get('lastName')?.hasError(v.type) && registerForm.get('lastName')?.touched"
         >
@@ -49,7 +49,7 @@
           formControlName="email"
         ></ion-input>
       </ion-item>
-      <div class="error" *ngFor="let v of validation_message.email">
+      <div class="error ion-padding-start" *ngFor="let v of validation_message.email">
         <small
           *ngIf="registerForm.get('email')?.hasError(v.type) && registerForm.get('email')?.touched"
         >
@@ -66,7 +66,7 @@
           formControlName="password"
         ></ion-input>
       </ion-item>
-      <div class="error" *ngFor="let v of validation_message.password">
+      <div class="error ion-padding-start" *ngFor="let v of validation_message.password">
         <small
           *ngIf="registerForm.get('password')?.hasError(v.type) && registerForm.get('password')?.touched"
         >

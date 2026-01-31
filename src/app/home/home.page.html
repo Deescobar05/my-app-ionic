@@ -11,7 +11,7 @@
       : 'var(--tema-claro-texto)'
   "
 >
-  <ion-toolbar>
+  <ion-toolbar class="ion-align-items-center ion-justify-content-between">
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
@@ -44,12 +44,12 @@
   "
 >
   <!-- 🔥 GENEROS -->
-  <section class="yt-section">
-    <h3>Explorar géneros</h3>
+  <section class="yt-section ion-padding-horizontal">
+    <h3 class="ion-text-start ion-margin-bottom">Explorar géneros</h3>
 
     <swiper-container slides-per-view="2.2" space-between="14">
       <swiper-slide *ngFor="let genre of genres">
-        <div class="yt-card genre">
+        <div class="yt-card genre" ion-text-center ion-padding>
           <img [src]="genre.image" />
           <div class="overlay"></div>
           <h4>{{ genre.title }}</h4>
@@ -59,12 +59,12 @@
   </section>
 
   <!-- 🔥 ALBUMS -->
-  <section class="yt-section">
-    <h3>Álbumes populares</h3>
+  <section class="yt-section ion-padding-horizontal">
+    <h3 class="ion-text-start ion-margin-bottom">Álbumes populares</h3>
 
     <swiper-container slides-per-view="2.4" space-between="14">
       <swiper-slide *ngFor="let album of albums" (click)="showSongs(album.id)">
-        <div class="yt-card album">
+        <div class="yt-card album" ion-text-center ion-padding>
           <img [src]="album.image" />
           <h5>{{ album.name }}</h5>
         </div>
@@ -73,15 +73,15 @@
   </section>
 
   <!-- 🔥 ARTISTAS -->
-  <section class="yt-section">
-    <h3>Artistas</h3>
+  <section class="yt-section ion-padding-horizontal">
+    <h3 class="ion-text-start ion-margin-bottom">Artistas</h3>
 
     <swiper-container slides-per-view="2.8" space-between="14">
       <swiper-slide
         *ngFor="let artist of artists"
         (click)="showSongsByArists(artist.id)"
       >
-        <div class="yt-card artist">
+        <div class="yt-card artist ion-text-center ion-padding">
           <img [src]="artist.image" />
           <h5>{{ artist.name }}</h5>
         </div>
@@ -93,7 +93,7 @@
 <!-- 🔥 MINI PLAYER -->
 <ion-footer class="mini-player" *ngIf="song?.name">
   <ion-grid>
-    <ion-row>
+    <ion-row class="ion-align-items-center ion-justify-content-between">
       <ion-col class="ion-text-start">
         {{formatTime(currentSong?.currentTime) || "0:00"}}</ion-col
       >
@@ -106,11 +106,11 @@
   <ion-progress-bar [value]="newTime"></ion-progress-bar>
 
   <ion-grid>
-    <ion-row>
+    <ion-row class="ion-align-items-center ion-justify-content-between">
       <ion-col size="1">
         <ion-icon name="heart"></ion-icon>
       </ion-col>
-      <ion-col size="10">
+      <ion-col size="10" class="ion-text-center ion-padding-horizontal">
         <ion-text>{{ song.name }}</ion-text>
       </ion-col>
       <ion-col size="1">

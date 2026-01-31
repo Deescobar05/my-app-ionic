@@ -30,9 +30,9 @@
       : 'var(--tema-claro-fondo)'
   "
 >
-  <ion-list lines="none">
+  <ion-list lines="none" class="ion-padding-vertical">
     <ion-item
-      class="song-item"
+      class="song-item ion-align-items-center ion-padding-horizontal"
       *ngFor="let song of songs; index as i"
       (click)="selectSong(song)"
     >

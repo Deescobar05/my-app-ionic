@@ -16,6 +16,7 @@
     [formGroup]="loginForm"
     action=""
     (ngSubmit)="loginUser(loginForm.value)"
+    class="ion-padding ion-margin-top"
   >
     <ion-item>
       <ion-input
@@ -25,7 +26,7 @@
         formControlName="email"
       ></ion-input>
     </ion-item>
-    <div class="error-container">
+    <div class="error-container ion-padding-horizontal">
       <ng-container *ngFor="let validation of validation_message.email">
         <div
           class="error-message"
@@ -44,7 +45,7 @@
         type="password"
       ></ion-input>
     </ion-item>
-    <div class="error-container">
+    <div class="error-container ion-padding-horizontal">
       <ng-container *ngFor="let validation of validation_message.password">
         <div
           class="error-message"

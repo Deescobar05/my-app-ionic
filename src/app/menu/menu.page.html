@@ -2,7 +2,7 @@
   <ion-menu contentId="main-content" type="overlay" class="custom-menu">
     <!-- HEADER -->
     <ion-header class="menu-header">
-      <div class="menu-user">
+      <div class="menu-user ion-display-flex ion-align-items-center ion-gap-2">
         <ion-avatar>
           <img src="https://i.pravatar.cc/150?img=12" />
         </ion-avatar>
@@ -16,15 +16,15 @@
 
     <!-- CONTENIDO -->
     <ion-content>
-      <ion-list class="menu-list">
+      <ion-list class="menu-list ion-padding-vertical">
         <!-- Intro -->
-        <ion-item button (click)="goToIntro()">
+        <ion-item class="ion-margin-vertical" button (click)="goToIntro()">
           <ion-icon name="play-circle-outline" slot="start"></ion-icon>
           <ion-label>Intro</ion-label>
         </ion-item>
 
         <!-- Cambiar tema -->
-        <ion-item (click)="cambiarTema()">
+        <ion-item class="ion-margin-vertical" (click)="cambiarTema()">
           <ion-icon name="moon-outline" slot="start"></ion-icon>
           <ion-label>Cambiar tema</ion-label>
         </ion-item>
@@ -33,7 +33,7 @@
 
     <!-- FOOTER -->
     <ion-footer>
-      <ion-item button (click)="logout()" lines="none" class="logout-item">
+      <ion-item class="ion-margin-vertical" button (click)="logout()" lines="none" class="logout-item">
         <ion-icon name="log-out-outline" slot="start"></ion-icon>
         <ion-label>Cerrar sesión</ion-label>
       </ion-item>
